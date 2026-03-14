@@ -1,19 +1,4 @@
-/ {
-    zip_xy_scaler: zip_xy_scaler {
-        compatible = "zmk,input-processor-scaler";
-        #input-processor-cells = <2>;
-    };
-
-    zip_xy_to_scroll_mapper: zip_xy_to_scroll_mapper {
-        compatible = "zmk,input-processor-xy-to-scroll";
-        #input-processor-cells = <0>;
-    };
-
-    zip_temp_layer: zip_temp_layer {
-        compatible = "zmk,input-processor-temp-layer";
-        #input-processor-cells = <2>;
-    };
-};
+#include <behaviors/input_processors.dtsi>
 
 &cirque_lh_listener {
     input-processors = <&zip_xy_scaler 8 15>,
