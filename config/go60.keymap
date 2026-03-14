@@ -12,15 +12,6 @@
 #define LAYER_Mouse 3
 #define LAYER_Magic 4
 
-/* Input Listeners — auto-activate Mouse layer on trackpad movement */
-&cirque_rh_listener {
-    input-processors = <&zip_xy_scaler 3 1>, <&zip_temp_layer LAYER_Mouse 200>;
-};
-
-&cirque_lh_listener {
-    input-processors = <&zip_xy_scaler 8 15>, <&zip_xy_to_scroll_mapper>, <&zip_temp_layer LAYER_Mouse 200>;
-};
-
 / {
 macros {
 /* Mixed Layer: ESDF + Numpad Blue Glow */
