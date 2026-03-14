@@ -4,6 +4,7 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/mouse.h>
+#include <input/processors.dtsi>
 
 /* Layer Definitions */
 #define LAYER_Base 0
