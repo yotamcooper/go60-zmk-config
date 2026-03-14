@@ -60,13 +60,11 @@ num_exit: num_exit {
 heb_on: heb_on {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
-    wait-ms = <10>;
-    tap-ms = <10>;
+    wait-ms = <50>;
+    tap-ms = <50>;
     bindings
     = <&macro_tap &tog 2>
-    , <&macro_press &kp LALT>
-    , <&macro_tap &kp LSHFT>
-    , <&macro_release &kp LALT>
+    , <&macro_tap &kp LA(LSHFT)>
     , <&macro_tap &rgb_ug RGB_ON>
     , <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,50)>
     ;
@@ -76,13 +74,11 @@ heb_on: heb_on {
 heb_off: heb_off {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
-    wait-ms = <10>;
-    tap-ms = <10>;
+    wait-ms = <50>;
+    tap-ms = <50>;
     bindings
     = <&macro_tap &tog 2>
-    , <&macro_press &kp LALT>
-    , <&macro_tap &kp LSHFT>
-    , <&macro_release &kp LALT>
+    , <&macro_tap &kp LA(LSHFT)>
     , <&macro_tap &rgb_ug RGB_OFF>
     ;
 };
