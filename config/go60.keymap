@@ -31,7 +31,7 @@
 / {
 macros {
 
-/* Mixed Layer: ESDF + Numpad Blue Glow */
+/* Mixed Layer: hold for numpad + Blue */
 num_blue: num_blue {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -47,8 +47,8 @@ num_blue: num_blue {
     ;
 };
 
-/* Hebrew Toggle + OS Switch (Alt+Shift) + Green Glow */
-heb_toggle: heb_toggle {
+/* Hebrew ON: toggle Hebrew layer + Alt+Shift + Green */
+heb_on: heb_on {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     wait-ms = <10>;
@@ -62,6 +62,21 @@ heb_toggle: heb_toggle {
     , <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,50)>
     ;
 };
+
+/* Hebrew OFF: toggle Hebrew layer + Alt+Shift + RGB off */
+heb_off: heb_off {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    wait-ms = <10>;
+    tap-ms = <10>;
+    bindings
+    = <&macro_tap &tog 2>
+    , <&macro_press &kp LALT>
+    , <&macro_tap &kp LSHFT>
+    , <&macro_release &kp LALT>
+    , <&macro_tap &rgb_ug RGB_OFF>
+    ;
+};
 };
 
 
@@ -70,12 +85,12 @@ compatible = "zmk,keymap";
 
 layer_Base {
 bindings = <
-&kp EQUAL   &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9     &kp N0    &kp MINUS
-&kp TAB     &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O      &kp P     &kp BSLH
-&kp ESC     &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L      &kp SEMI  &kp SQT
-&heb_toggle &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT    &kp FSLH  &tog 4
-&kp GRAVE   &kp DEL   &kp BSPC  &kp LGUI  &kp LBKT  &kp RBKT
-&num_blue   &kp LSHFT &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
+&kp EQUAL  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9     &kp N0    &kp MINUS
+&kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O      &kp P     &kp BSLH
+&kp ESC    &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L      &kp SEMI  &kp SQT
+&heb_on    &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT    &kp FSLH  &tog 4
+&kp GRAVE  &kp DEL   &kp BSPC  &kp LGUI  &kp LBKT  &kp RBKT
+&num_blue  &kp LSHFT &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
 >;
 };
 
@@ -92,12 +107,12 @@ bindings = <
 
 layer_Hebrew {
 bindings = <
-&trans      &trans  &trans  &trans  &trans  &trans  &trans  &trans   &trans    &trans   &trans    &trans
-&trans      &kp Q   &kp W   &kp E   &kp R   &kp T   &kp Y   &kp U    &kp I     &kp O    &kp P     &trans
-&trans      &kp A   &kp S   &kp D   &kp F   &kp G   &kp H   &kp J    &kp K     &kp L    &kp SEMI  &trans
-&heb_toggle &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N   &kp M    &kp COMMA &kp DOT  &kp FSLH  &trans
-&trans      &trans  &trans  &trans  &trans  &trans
-&num_blue   &trans  &trans  &trans  &trans  &trans
+&trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans   &trans    &trans   &trans    &trans
+&trans    &kp Q   &kp W   &kp E   &kp R   &kp T   &kp Y   &kp U    &kp I     &kp O    &kp P     &trans
+&trans    &kp A   &kp S   &kp D   &kp F   &kp G   &kp H   &kp J    &kp K     &kp L    &kp SEMI  &trans
+&heb_off  &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N   &kp M    &kp COMMA &kp DOT  &kp FSLH  &trans
+&trans    &trans  &trans  &trans  &trans  &trans
+&num_blue &trans  &trans  &trans  &trans  &trans
 >;
 };
 
@@ -124,4 +139,3 @@ bindings = <
 };
 };
 };
-
