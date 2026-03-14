@@ -8,12 +8,11 @@
 
 
 /* Layer Definitions */
-#define LAYER_Base     0
-#define LAYER_Mixed    1
-#define LAYER_Hebrew   2
-#define LAYER_Mouse    3
-#define LAYER_Magic    4
-#define LAYER_HebMixed 5
+#define LAYER_Base   0
+#define LAYER_Mixed  1
+#define LAYER_Hebrew 2
+#define LAYER_Mouse  3
+#define LAYER_Magic  4
 
 
 &cirque_lh_listener {
@@ -30,18 +29,9 @@
 
 
 / {
-
-conditional_layers {
-    compatible = "zmk,conditional-layers";
-    hebrew_and_mixed {
-        if-layers = <1 2>;
-        then-layer = <5>;
-    };
-};
-
 macros {
 
-/* Base → Mixed ON: blue */
+/* Toggle Mixed ON: blue */
 num_blue: num_blue {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -54,7 +44,7 @@ num_blue: num_blue {
     ;
 };
 
-/* Mixed → Base: RGB off */
+/* Toggle Mixed OFF: RGB off */
 num_exit: num_exit {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -66,33 +56,7 @@ num_exit: num_exit {
     ;
 };
 
-/* Hebrew → Mixed ON: blue */
-num_heb_enter: num_heb_enter {
-    compatible = "zmk,behavior-macro";
-    #binding-cells = <0>;
-    wait-ms = <10>;
-    tap-ms = <10>;
-    bindings
-    = <&macro_tap &tog 1>
-    , <&macro_tap &rgb_ug RGB_ON>
-    , <&macro_tap &rgb_ug RGB_COLOR_HSB(240,100,50)>
-    ;
-};
-
-/* Hebrew+Mixed → Hebrew only: green */
-num_heb_exit: num_heb_exit {
-    compatible = "zmk,behavior-macro";
-    #binding-cells = <0>;
-    wait-ms = <10>;
-    tap-ms = <10>;
-    bindings
-    = <&macro_tap &tog 1>
-    , <&macro_tap &rgb_ug RGB_ON>
-    , <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,50)>
-    ;
-};
-
-/* Hebrew ON: Alt+Shift + green */
+/* Toggle Hebrew ON: Alt+Shift + green */
 heb_on: heb_on {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -108,7 +72,7 @@ heb_on: heb_on {
     ;
 };
 
-/* Hebrew OFF from Base: Alt+Shift + RGB off */
+/* Toggle Hebrew OFF: Alt+Shift + RGB off */
 heb_off: heb_off {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -120,22 +84,6 @@ heb_off: heb_off {
     , <&macro_tap &kp LSHFT>
     , <&macro_release &kp LALT>
     , <&macro_tap &rgb_ug RGB_OFF>
-    ;
-};
-
-/* Hebrew+Mixed → Mixed only: stays blue */
-heb_off_mixed: heb_off_mixed {
-    compatible = "zmk,behavior-macro";
-    #binding-cells = <0>;
-    wait-ms = <10>;
-    tap-ms = <10>;
-    bindings
-    = <&macro_tap &tog 2>
-    , <&macro_press &kp LALT>
-    , <&macro_tap &kp LSHFT>
-    , <&macro_release &kp LALT>
-    , <&macro_tap &rgb_ug RGB_ON>
-    , <&macro_tap &rgb_ug RGB_COLOR_HSB(240,100,50)>
     ;
 };
 };
@@ -172,8 +120,8 @@ bindings = <
 &trans    &kp Q   &kp W   &kp E   &kp R   &kp T   &kp Y   &kp U    &kp I     &kp O    &kp P     &trans
 &trans    &kp A   &kp S   &kp D   &kp F   &kp G   &kp H   &kp J    &kp K     &kp L    &kp SEMI  &trans
 &heb_off  &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N   &kp M    &kp COMMA &kp DOT  &kp FSLH  &trans
-&trans         &trans    &trans    &trans    &trans    &trans
-&num_heb_enter &kp LSHFT &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
+&trans    &trans    &trans    &trans    &trans    &trans
+&num_blue &kp LSHFT &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
 >;
 };
 
@@ -190,23 +138,12 @@ bindings = <
 
 layer_Magic {
 bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans  &trans  &trans  &trans  &trans           &bootloader
-&trans      &out OUT_BLE  &out OUT_USB   &trans        &trans        &trans        &rgb_ug RGB_ON  &rgb_ug RGB_OFF  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans
-&trans      &trans        &trans         &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &trans
-&trans      &trans        &trans         &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &tog 4
-&trans      &trans        &trans         &trans        &trans        &trans
-&trans      &trans        &trans         &trans        &trans        &trans
->;
-};
-
-layer_HebMixed {
-bindings = <
-&trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&heb_off_mixed  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans        &trans    &trans    &trans    &trans
-&num_heb_exit   &kp LSHFT     &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans          &trans           &trans           &trans           &trans           &bootloader
+&trans      &out OUT_BLE  &out OUT_USB  &trans        &trans        &trans        &rgb_ug RGB_ON  &rgb_ug RGB_OFF  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans
+&trans      &trans        &trans        &trans        &trans        &trans        &trans          &trans           &trans           &trans           &trans           &trans
+&trans      &trans        &trans        &trans        &trans        &trans        &trans          &trans           &trans           &trans           &trans           &tog 4
+&trans      &trans        &trans        &trans        &trans        &trans
+&trans      &trans        &trans        &trans        &trans        &trans
 >;
 };
 };
