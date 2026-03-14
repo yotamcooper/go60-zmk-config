@@ -19,13 +19,13 @@
 &cirque_lh_listener {
     input-processors = <&zip_xy_scaler 4 15>,
                        <&zip_xy_to_scroll_mapper>,
-                       <&zip_temp_layer 3 200>;
+                       <&zip_temp_layer 3 500>;
 };
 
 
 &cirque_rh_listener {
     input-processors = <&zip_xy_scaler 3 1>,
-                       <&zip_temp_layer 3 200>;
+                       <&zip_temp_layer 3 500>;
 };
 
 
@@ -190,12 +190,12 @@ bindings = <
 
 layer_Magic {
 bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans  &trans  &trans  &trans  &trans  &bootloader
-&trans      &out OUT_BLE  &out OUT_USB  &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans  &tog 4
-&trans      &trans        &trans        &trans        &trans        &trans
-&trans      &trans        &trans        &trans        &trans        &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans  &trans  &trans  &trans  &trans           &bootloader
+&trans      &out OUT_BLE  &out OUT_USB   &trans        &trans        &trans        &rgb_ug RGB_ON  &rgb_ug RGB_OFF  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans
+&trans      &trans        &trans         &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &trans
+&trans      &trans        &trans         &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &tog 4
+&trans      &trans        &trans         &trans        &trans        &trans
+&trans      &trans        &trans         &trans        &trans        &trans
 >;
 };
 
@@ -205,8 +205,8 @@ bindings = <
 &trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &heb_off_mixed  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans       &trans    &trans    &trans    &trans
-&num_heb_exit   &kp LSHFT    &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
+&trans          &trans        &trans    &trans    &trans    &trans
+&num_heb_exit   &kp LSHFT     &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
 >;
 };
 };
