@@ -14,7 +14,7 @@
 
 / {
     macros {
-        /* Numpad/Arrow Indigo Macro */
+        /* Mixed Layer: ESDF + Numpad Blue Glow */
         num_blue: num_blue {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -22,7 +22,7 @@
             tap-ms = <10>;
             bindings 
                 = <&macro_press &mo 1>
-                , <&macro_tap &rgb_ug RGB_COLOR_HSB(270,100,50)> 
+                , <&macro_tap &rgb_ug RGB_COLOR_HSB(240,100,50)> 
                 , <&macro_pause_for_release>
                 , <&macro_release &mo 1>
                 , <&macro_tap &rgb_ug RGB_OFF> 
