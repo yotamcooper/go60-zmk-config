@@ -32,30 +32,17 @@
 / {
 macros {
 
-/* Toggle Mixed ON: blue */
-num_blue: num_blue {
+/* Toggle Mixed layer */
+num_toggle: num_toggle {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     wait-ms = <10>;
     tap-ms = <10>;
-    bindings
-    = <&macro_tap &tog 1>
-    ;
+    bindings = <&macro_tap &tog 1>;
 };
 
-/* Toggle Mixed OFF */
-num_exit: num_exit {
-    compatible = "zmk,behavior-macro";
-    #binding-cells = <0>;
-    wait-ms = <10>;
-    tap-ms = <10>;
-    bindings
-    = <&macro_tap &tog 1>
-    ;
-};
-
-/* Toggle Hebrew ON: Alt+Shift */
-heb_on: heb_on {
+/* Toggle Hebrew layer + OS language switch */
+heb_toggle: heb_toggle {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     wait-ms = <50>;
@@ -65,71 +52,6 @@ heb_on: heb_on {
     , <&macro_tap &kp LA(LSHFT)>
     ;
 };
-
-/* Toggle Hebrew OFF: Alt+Shift */
-heb_off: heb_off {
-    compatible = "zmk,behavior-macro";
-    #binding-cells = <0>;
-    wait-ms = <50>;
-    tap-ms = <50>;
-    bindings
-    = <&macro_tap &tog 2>
-    , <&macro_tap &kp LA(LSHFT)>
-    ;
-};
-};
-
-
-underglow-layer {
-    compatible = "zmk,underglow-layer";
-
-    base_rgb {
-        layer-id = <LAYER_Base>;
-        bindings = <
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-        >;
-    };
-
-    mixed_rgb {
-        layer-id = <LAYER_Mixed>;
-        bindings = <
-            &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___
-            &ug ___       &ug ___       &ug 0xFF8000  &ug 0xFF8000  &ug 0xFF8000  &ug 0xFF8000  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug ___
-            &ug ___       &ug ___       &ug 0xFF8000  &ug 0xFF8000  &ug 0xFF8000  &ug 0xFF8000  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug ___
-            &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug ___       &ug ___
-            &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___
-            &ug 0x0000FF  &ug ___       &ug ___       &ug 0x0000FF  &ug ___       &ug ___
-        >;
-    };
-
-    hebrew_rgb {
-        layer-id = <LAYER_Hebrew>;
-        bindings = <
-            &ug ___      &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___      &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___      &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug 0x00FF00 &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-        >;
-    };
-
-    mouse_rgb {
-        layer-id = <LAYER_Mouse>;
-        bindings = <
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
-            &ug ___       &ug ___       &ug ___  &ug ___  &ug ___  &ug ___
-            &ug 0xFFFF00  &ug 0xFFFF00  &ug 0xFFFF00  &ug ___  &ug ___  &ug ___
-        >;
-    };
 };
 
 
@@ -138,34 +60,34 @@ compatible = "zmk,keymap";
 
 layer_Base {
 bindings = <
-&kp EQUAL  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9     &kp N0    &kp MINUS
-&kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O      &kp P     &kp BSLH
-&kp ESC    &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L      &kp SEMI  &kp SQT
-&heb_on    &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT    &kp FSLH  &tog 4
-&kp GRAVE  &kp DEL   &kp BSPC  &kp LGUI  &kp LBKT  &kp RBKT
-&num_blue  &kp LSHFT &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
+&kp EQUAL    &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9     &kp N0    &kp MINUS
+&kp TAB      &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O      &kp P     &kp BSLH
+&kp ESC      &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L      &kp SEMI  &kp SQT
+&heb_toggle  &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT    &kp FSLH  &tog 4
+&kp GRAVE    &kp DEL   &kp BSPC  &kp LGUI  &kp LBKT  &kp RBKT
+&num_toggle  &kp LSHFT &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
 >;
 };
 
 layer_Mixed {
 bindings = <
-&trans     &kp F1     &kp F2     &kp F3     &kp F4     &kp F5     &kp F6    &kp F7        &kp F8        &kp F9        &kp F10          &kp F11
-&trans     &trans     &kp HOME   &kp UP     &kp END    &kp PG_UP  &kp KP_N7 &kp KP_N8     &kp KP_N9     &kp KP_MINUS  &kp KP_SLASH     &kp F12
-&trans     &trans     &kp LEFT   &kp DOWN   &kp RIGHT  &kp PG_DN  &kp KP_N4 &kp KP_N5     &kp KP_N6     &kp KP_PLUS   &kp KP_MULTIPLY  &kp KP_NUM
-&trans     &trans     &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp KP_N1 &kp KP_N2     &kp KP_N3     &kp KP_ENTER  &kp EQUAL        &trans
-&trans     &trans     &trans     &trans     &kp KP_DOT &trans
-&num_exit  &kp LSHFT  &kp LCTRL  &kp KP_N0  &mt PSCRN SPACE  &mt RALT RET
+&trans      &kp F1     &kp F2     &kp F3     &kp F4     &kp F5     &kp F6        &kp F7        &kp F8        &kp F9        &kp F10         &kp F11
+&trans      &trans     &kp HOME   &kp UP     &kp END    &kp PG_UP  &kp KP_N7     &kp KP_N8     &kp KP_N9     &kp KP_SLASH  &kp KP_MULTIPLY &kp F12
+&trans      &trans     &kp LEFT   &kp DOWN   &kp RIGHT  &kp PG_DN  &kp KP_N4     &kp KP_N5     &kp KP_N6     &kp KP_MINUS  &kp KP_PLUS     &kp KP_NUM
+&trans      &trans     &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp KP_N1     &kp KP_N2     &kp KP_N3     &kp KP_ENTER  &trans          &trans
+&trans      &trans     &trans     &trans     &trans     &trans
+&num_toggle &kp LSHFT  &kp LCTRL  &kp KP_N0  &kp KP_DOT &mt RALT RET
 >;
 };
 
 layer_Hebrew {
 bindings = <
-&trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans   &trans    &trans   &trans    &trans
-&trans    &kp Q   &kp W   &kp E   &kp R   &kp T   &kp Y   &kp U    &kp I     &kp O    &kp P     &trans
-&trans    &kp A   &kp S   &kp D   &kp F   &kp G   &kp H   &kp J    &kp K     &kp L    &kp SEMI  &trans
-&heb_off  &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N   &kp M    &kp COMMA &kp DOT  &kp FSLH  &trans
-&trans    &trans    &trans    &trans    &trans    &trans
-&num_blue &kp LSHFT &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
+&trans       &trans  &trans  &trans  &trans  &trans  &trans  &trans   &trans    &trans   &trans    &trans
+&trans       &kp Q   &kp W   &kp E   &kp R   &kp T   &kp Y   &kp U    &kp I     &kp O    &kp P     &trans
+&trans       &kp A   &kp S   &kp D   &kp F   &kp G   &kp H   &kp J    &kp K     &kp L    &kp SEMI  &trans
+&heb_toggle  &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N   &kp M    &kp COMMA &kp DOT  &kp FSLH  &trans
+&trans       &trans      &trans    &trans    &trans    &trans
+&num_toggle  &kp LSHFT   &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
 >;
 };
 
@@ -191,4 +113,89 @@ bindings = <
 >;
 };
 };
-};
+
+
+#if __has_include(<dt-bindings/zmk/rgb_colors.h>)
+
+  #define ORN &ug 0xFF8000
+  #define GRN &ug 0x00FF00
+  #define BLU &ug 0x0000FF
+  #define CYN &ug 0x00FFFF
+  #define YLW &ug 0xFFFF00
+  #define ___ &ug 0x000000
+
+  / {
+    underglow-layer {
+      compatible = "zmk,underglow-layer";
+
+      #ifdef LAYER_Base
+      Base {
+        layer-id = <LAYER_Base>;
+        fade-delay = <-1>;
+        bindings = <
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                 ___ ___ ___
+                           ___ ___ ___   ___ ___ ___
+        >;
+      };
+      #endif
+
+      #ifdef LAYER_Mixed
+      Mixed {
+        layer-id = <LAYER_Mixed>;
+        fade-delay = <-1>;
+        bindings = <
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ORN ___ ___     BLU BLU BLU CYN CYN ___
+          ___ ___ ORN ORN ORN ___     BLU BLU BLU CYN CYN ___
+          ___ ___ ___ ___ ___ ___     BLU BLU BLU CYN ___ ___
+                  ___ ___ ___                 ___ ___ ___
+                           ___ ___ ___   BLU BLU ___
+        >;
+      };
+      #endif
+
+      #ifdef LAYER_Hebrew
+      Hebrew {
+        layer-id = <LAYER_Hebrew>;
+        fade-delay = <-1>;
+        bindings = <
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          GRN ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                 ___ ___ ___
+                           ___ ___ ___   ___ ___ ___
+        >;
+      };
+      #endif
+
+      #ifdef LAYER_Mouse
+      Mouse {
+        layer-id = <LAYER_Mouse>;
+        fade-delay = <5>;
+        bindings = <
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                 ___ ___ ___
+                           YLW YLW YLW   ___ ___ ___
+        >;
+      };
+      #endif
+
+    };
+  };
+
+  #undef ORN
+  #undef GRN
+  #undef BLU
+  #undef CYN
+  #undef YLW
+  #undef ___
+
+#endif
