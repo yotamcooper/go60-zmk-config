@@ -7,9 +7,7 @@ RUN <<EOF
     nix-env -iA cachix -f https://cachix.org/api/v1/install
     cachix use moergo-glove80-zmk-dev
     mkdir /config
-    # Mirror ZMK repository to make it easier to reference both branches and
-    # tags without remote namespacing
-    git clone --mirror https://github.com/moergo-sc/zmk /zmk
+    git clone --mirror https://github.com/darknao/zmk /zmk
     GIT_DIR=/zmk git worktree add --detach /src
 EOF
 
@@ -26,9 +24,9 @@ EOF
 COPY --chmod=755 <<EOF /bin/entrypoint.sh
 #!/usr/bin/env bash
     set -euo pipefail
-    : "\${BRANCH:=main}"
+    : "\${BRANCH:=rgb-layer-24.12}"
 
-    echo "Checking out \$BRANCH from moergo-sc/zmk" >&2
+    echo "Checking out \$BRANCH from darknao/zmk" >&2
     cd /src
     git fetch origin
     git checkout -q --detach "\$BRANCH"
