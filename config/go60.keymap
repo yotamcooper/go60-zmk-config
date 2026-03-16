@@ -31,7 +31,6 @@
 / {
 macros {
 
-/* Toggle Mixed layer */
 num_toggle: num_toggle {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -40,7 +39,6 @@ num_toggle: num_toggle {
     bindings = <&macro_tap &tog 1>;
 };
 
-/* Toggle Hebrew layer + OS language switch */
 heb_toggle: heb_toggle {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -112,89 +110,107 @@ bindings = <
 >;
 };
 };
+};
 
 
 #if __has_include(<dt-bindings/zmk/rgb_colors.h>)
+#include <dt-bindings/zmk/rgb_colors.h>
 
-  #define ORN &ug 0xFF8000
-  #define GRN &ug 0x00FF00
-  #define BLU &ug 0x0000FF
-  #define CYN &ug 0x00FFFF
-  #define YLW &ug 0xFFFF00
-  #define ___ &ug 0x000000
+/* Private color aliases — names guaranteed not to conflict */
+#define Z_OFF &ug 0x000000
+#define Z_ORN &ug 0xFF8000
+#define Z_BLU &ug 0x0000FF
+#define Z_CYN &ug 0x00FFFF
+#define Z_GRN &ug 0x00FF00
+#define Z_YLW &ug 0xFFFF00
 
-  / {
-    underglow-layer {
-      compatible = "zmk,underglow-layer";
+/ {
+  underglow-layer {
+    compatible = "zmk,underglow-layer";
 
-      #ifdef LAYER_Base
-      Base {
-        layer-id = <LAYER_Base>;
-        fade-delay = <-1>;
-        bindings = <
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-                  ___ ___ ___                 ___ ___ ___
-                           ___ ___ ___   ___ ___ ___
-        >;
-      };
-      #endif
-
-      #ifdef LAYER_Mixed
-      Mixed {
-        layer-id = <LAYER_Mixed>;
-        fade-delay = <-1>;
-        bindings = <
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ORN ___ ___     BLU BLU BLU CYN CYN ___
-          ___ ___ ORN ORN ORN ___     BLU BLU BLU CYN CYN ___
-          ___ ___ ___ ___ ___ ___     BLU BLU BLU CYN ___ ___
-                  ___ ___ ___                 ___ ___ ___
-                           ___ ___ ___   BLU BLU ___
-        >;
-      };
-      #endif
-
-      #ifdef LAYER_Hebrew
-      Hebrew {
-        layer-id = <LAYER_Hebrew>;
-        fade-delay = <-1>;
-        bindings = <
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          GRN ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-                  ___ ___ ___                 ___ ___ ___
-                           ___ ___ ___   ___ ___ ___
-        >;
-      };
-      #endif
-
-      #ifdef LAYER_Mouse
-      Mouse {
-        layer-id = <LAYER_Mouse>;
-        fade-delay = <5>;
-        bindings = <
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-          ___ ___ ___ ___ ___ ___     ___ ___ ___ ___ ___ ___
-                  ___ ___ ___                 ___ ___ ___
-                           YLW YLW YLW   ___ ___ ___
-        >;
-      };
-      #endif
-
+    #ifdef LAYER_Base
+    Base {
+      layer-id = <LAYER_Base>;
+      fade-delay = <-1>;
+      bindings = <
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+                Z_OFF Z_OFF Z_OFF                       Z_OFF Z_OFF Z_OFF
+                         Z_OFF Z_OFF Z_OFF   Z_OFF Z_OFF Z_OFF
+      >;
     };
-  };
+    #endif
 
-  #undef ORN
-  #undef GRN
-  #undef BLU
-  #undef CYN
-  #undef YLW
-  #undef ___
+    #ifdef LAYER_Mixed
+    Mixed {
+      layer-id = <LAYER_Mixed>;
+      fade-delay = <-1>;
+      bindings = <
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_ORN Z_OFF Z_OFF     Z_BLU Z_BLU Z_BLU Z_CYN Z_CYN Z_OFF
+        Z_OFF Z_OFF Z_ORN Z_ORN Z_ORN Z_OFF     Z_BLU Z_BLU Z_BLU Z_CYN Z_CYN Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_BLU Z_BLU Z_BLU Z_CYN Z_OFF Z_OFF
+                Z_OFF Z_OFF Z_OFF                       Z_OFF Z_OFF Z_OFF
+                         Z_OFF Z_OFF Z_OFF   Z_BLU Z_BLU Z_OFF
+      >;
+    };
+    #endif
+
+    #ifdef LAYER_Hebrew
+    Hebrew {
+      layer-id = <LAYER_Hebrew>;
+      fade-delay = <-1>;
+      bindings = <
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_GRN Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+                Z_OFF Z_OFF Z_OFF                       Z_OFF Z_OFF Z_OFF
+                         Z_OFF Z_OFF Z_OFF   Z_OFF Z_OFF Z_OFF
+      >;
+    };
+    #endif
+
+    #ifdef LAYER_Mouse
+    Mouse {
+      layer-id = <LAYER_Mouse>;
+      fade-delay = <5>;
+      bindings = <
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+                Z_OFF Z_OFF Z_OFF                       Z_OFF Z_OFF Z_OFF
+                         Z_YLW Z_YLW Z_YLW   Z_OFF Z_OFF Z_OFF
+      >;
+    };
+    #endif
+
+    #ifdef LAYER_Magic
+    Magic {
+      layer-id = <LAYER_Magic>;
+      fade-delay = <-1>;
+      bindings = <
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+        Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
+                Z_OFF Z_OFF Z_OFF                       Z_OFF Z_OFF Z_OFF
+                         Z_OFF Z_OFF Z_OFF   Z_OFF Z_OFF Z_OFF
+      >;
+    };
+    #endif
+
+  };
+};
+
+#undef Z_OFF
+#undef Z_ORN
+#undef Z_BLU
+#undef Z_CYN
+#undef Z_GRN
+#undef Z_YLW
 
 #endif
