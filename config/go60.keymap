@@ -131,7 +131,7 @@ bindings = <
     #ifdef LAYER_Base
     Base {
       layer-id = <LAYER_Base>;
-      fade-delay = <-1>;
+      fade-delay = <0xFFFFFFFF>;
       bindings = <
         Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
         Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
@@ -146,7 +146,7 @@ bindings = <
     #ifdef LAYER_Mixed
     Mixed {
       layer-id = <LAYER_Mixed>;
-      fade-delay = <-1>;
+      fade-delay = <0xFFFFFFFF>;
       bindings = <
         Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
         Z_OFF Z_OFF Z_OFF Z_ORN Z_OFF Z_OFF     Z_BLU Z_BLU Z_BLU Z_CYN Z_CYN Z_OFF
@@ -161,7 +161,7 @@ bindings = <
     #ifdef LAYER_Hebrew
     Hebrew {
       layer-id = <LAYER_Hebrew>;
-      fade-delay = <-1>;
+      fade-delay = <0xFFFFFFFF>;
       bindings = <
         Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
         Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
@@ -191,7 +191,7 @@ bindings = <
     #ifdef LAYER_Magic
     Magic {
       layer-id = <LAYER_Magic>;
-      fade-delay = <-1>;
+      fade-delay = <0xFFFFFFFF>;
       bindings = <
         Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
         Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF     Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF Z_OFF
