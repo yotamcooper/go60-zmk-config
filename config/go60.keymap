@@ -5,6 +5,7 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/mouse.h>
 #include <input/processors.dtsi>
+#include <dt-bindings/zmk/rgb_colors.h>
 
 
 /* Layer Definitions */
@@ -39,12 +40,10 @@ num_blue: num_blue {
     tap-ms = <10>;
     bindings
     = <&macro_tap &tog 1>
-    , <&macro_tap &rgb_ug RGB_ON>
-    , <&macro_tap &rgb_ug RGB_COLOR_HSB(240,100,50)>
     ;
 };
 
-/* Toggle Mixed OFF: RGB off */
+/* Toggle Mixed OFF */
 num_exit: num_exit {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -52,11 +51,10 @@ num_exit: num_exit {
     tap-ms = <10>;
     bindings
     = <&macro_tap &tog 1>
-    , <&macro_tap &rgb_ug RGB_OFF>
     ;
 };
 
-/* Toggle Hebrew ON: Alt+Shift + green */
+/* Toggle Hebrew ON: Alt+Shift */
 heb_on: heb_on {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -65,12 +63,10 @@ heb_on: heb_on {
     bindings
     = <&macro_tap &tog 2>
     , <&macro_tap &kp LA(LSHFT)>
-    , <&macro_tap &rgb_ug RGB_ON>
-    , <&macro_tap &rgb_ug RGB_COLOR_HSB(120,100,50)>
     ;
 };
 
-/* Toggle Hebrew OFF: Alt+Shift + RGB off */
+/* Toggle Hebrew OFF: Alt+Shift */
 heb_off: heb_off {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
@@ -79,9 +75,61 @@ heb_off: heb_off {
     bindings
     = <&macro_tap &tog 2>
     , <&macro_tap &kp LA(LSHFT)>
-    , <&macro_tap &rgb_ug RGB_OFF>
     ;
 };
+};
+
+
+underglow-layer {
+    compatible = "zmk,underglow-layer";
+
+    base_rgb {
+        layer-id = <LAYER_Base>;
+        bindings = <
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+        >;
+    };
+
+    mixed_rgb {
+        layer-id = <LAYER_Mixed>;
+        bindings = <
+            &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___
+            &ug ___       &ug ___       &ug 0xFF8000  &ug 0xFF8000  &ug 0xFF8000  &ug 0xFF8000  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug ___
+            &ug ___       &ug ___       &ug 0xFF8000  &ug 0xFF8000  &ug 0xFF8000  &ug 0xFF8000  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug ___
+            &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug 0x0000FF  &ug ___       &ug ___
+            &ug ___       &ug ___       &ug ___       &ug ___       &ug ___       &ug ___
+            &ug 0x0000FF  &ug ___       &ug ___       &ug 0x0000FF  &ug ___       &ug ___
+        >;
+    };
+
+    hebrew_rgb {
+        layer-id = <LAYER_Hebrew>;
+        bindings = <
+            &ug ___      &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___      &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___      &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug 0x00FF00 &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+        >;
+    };
+
+    mouse_rgb {
+        layer-id = <LAYER_Mouse>;
+        bindings = <
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___  &ug ___
+            &ug ___       &ug ___       &ug ___  &ug ___  &ug ___  &ug ___
+            &ug 0xFFFF00  &ug 0xFFFF00  &ug 0xFFFF00  &ug ___  &ug ___  &ug ___
+        >;
+    };
 };
 
 
