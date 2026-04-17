@@ -61,8 +61,8 @@ bindings = <
 &kp TAB      &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O      &kp P     &kp BSLH
 &kp ESC      &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L      &kp SEMI  &kp SQT
 &heb_toggle  &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT    &kp FSLH  &tog 4
-&kp GRAVE    &kp DEL   &kp BSPC  &kp LGUI  &kp LBKT  &kp RBKT
-&num_toggle  &kp LSHFT &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
+&kp GRAVE    &kp DEL   &kp PSCRN  &kp LGUI  &kp LBKT  &kp RBKT
+&num_toggle  &kp LSHFT &kp LCTRL &kp BSPC  &kp SPACE  &mt RALT RET
 >;
 };
 
@@ -84,7 +84,7 @@ bindings = <
 &trans       &kp A   &kp S   &kp D   &kp F   &kp G   &kp H   &kp J    &kp K     &kp L    &kp SEMI  &trans
 &heb_toggle  &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N   &kp M    &kp COMMA &kp DOT  &kp FSLH  &trans
 &trans       &trans      &trans    &trans    &trans    &trans
-&num_toggle  &kp LSHFT   &kp LCTRL &kp BSPC  &mt PSCRN SPACE  &mt RALT RET
+&num_toggle  &kp LSHFT   &kp LCTRL &kp BSPC  &kp SPACE  &mt RALT RET
 >;
 };
 
